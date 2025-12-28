@@ -22,4 +22,12 @@ class Product extends Model
         'stock',
         'status',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function getStatusTextAttribute()
+    {
+        return $this->status ? 'active' : 'inactive';
+    }
 }

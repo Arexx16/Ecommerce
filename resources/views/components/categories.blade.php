@@ -34,13 +34,35 @@
         <!-- Main Content -->
         <main class="col-md-10 ms-sm-auto px-md-4">
 
-            <!-- Top Navbar -->
+            <!-- Top Navbar with Search -->
             <nav class="navbar navbar-light bg-white shadow-sm my-3 rounded">
-                <div class="container-fluid">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
                     <span class="navbar-brand mb-0 h1">Categories</span>
-                    <button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                        <i class="bi bi-folder-plus"></i> Add Category
-                    </button>
+
+                    <div class="d-flex gap-2">
+
+                        <!-- Search Form -->
+                        <form class="d-flex" method="GET" action="{{ route('categories.index') }}">
+                            <div class="input-group rounded-pill overflow-hidden shadow-sm">
+                                <input type="text"
+                                       name="search"
+                                       class="form-control border-0 ps-3"
+                                       placeholder="Search Category"
+                                       value="{{ request('search') }}">
+                                <button class="btn btn-dark px-4">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Add Category Button -->
+                        <button class="btn btn-dark btn-sm d-flex align-items-center gap-1 py-2 px-4 rounded-pill"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addCategoryModal">
+                            <i class="bi bi-folder-plus"></i>
+                            <span>Add Category</span>
+                        </button>
+                    </div>
                 </div>
             </nav>
 

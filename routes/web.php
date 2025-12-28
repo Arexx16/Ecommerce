@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +18,6 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', function () {
     return view('components.dashboard');
 })->name('dashboard');
-Route::get('/products', function () {
-    return view('components.products');
-})->name('products');
-Route::get('/users', function () {
-    return view('components.users');
-})->name('users');
+Route::get('/products', [ProductController::class,'index'])->name('products');
+Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');

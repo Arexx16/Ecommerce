@@ -21,4 +21,13 @@ class User extends Model
         'password',
         'status'
     ];
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    // Optional relationship
 }

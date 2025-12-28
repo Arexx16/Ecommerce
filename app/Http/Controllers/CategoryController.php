@@ -12,9 +12,17 @@ class CategoryController extends Controller
      */
      public function index(Request $request)
     {
-        $categories = Category::all();
+        $search = $request->input('search');
 
-        // If request expects JSON, return API response
+        // Fetch categories, optionally filtering by search
+        $categories = Category::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        // Return JSON if requested (API)
         if ($request->wantsJson()) {
             return response()->json([
                 'message' => 'success',
@@ -22,7 +30,7 @@ class CategoryController extends Controller
             ]);
         }
 
-        // Otherwise return Blade view
+        // Return Blade view
         return view('components.categories', compact('categories'));
     }
 
